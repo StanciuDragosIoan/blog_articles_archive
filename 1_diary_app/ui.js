@@ -41,6 +41,19 @@ const changeTheme = (c1, c2, c3, c4) => {
   exportBtn.style.border = `2px solid ${activeColor}`;
   importExportBtn.style.border = `2px solid ${activeColor}`;
   uiText.style.border = `2px solid ${activeColor}`;
+  let activeBtn = localStorage.getItem("activeBtn");
+
+  switch (activeBtn) {
+    case "entries":
+      listBtn.style.backgroundColor = activeColor;
+      break;
+    case "importExport":
+      importExportBtn.style.backgroundColor = activeColor;
+      break;
+    case "input":
+      inputBtn.style.backgroundColor = activeColor;
+      break;
+  }
 };
 
 //keep track of UI theme and update
@@ -124,3 +137,19 @@ if (activeBtn === "input") {
     [listBtn, inputBtn]
   );
 }
+
+/*
+ * Alert Functionality
+ */
+const showAlert = (msg) => {
+  //alert functionality
+  const alert = document.querySelector(".alert");
+  alert.style.display = "block";
+  alert.className = "alert uiText";
+  alert.innerHTML = msg;
+
+  setTimeout(() => {
+    alert.innerHTML = "";
+    alert.style.display = "none";
+  }, 2000);
+};
